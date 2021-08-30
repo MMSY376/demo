@@ -1,0 +1,36 @@
+Concury code repository
+
+---------------
+
+Algorithm benchmarks
+
+(only on Linux and FreeBSD)
+
+1. build
+
+bash build.sh
+
+2. run tests
+
+bash static.sh
+
+
+----------------
+
+DPDK benckmarks
+
+1. deploy
+
+1) login on CloudLab
+2) create profile: two physical machines with two physical links between them
+3) image: Ubuntu 16.04 or higher
+3) deploy on Wisconsin cluster
+4) compile DPDK 18.11 and pktgen 3.5.9
+
+2. run
+
+1) cd to this-code-directory/dpdk on one machine (work as load balancer) and run ''' bash run-wisconsin.sh 16777216 '''
+2) cd to pktgen-installation-directory/ on the other machine (work as packet generator and receiver) and run
+''' ./pktgen -l 0-7 -n 4 --  --rx "(0,0,0),(1,0,1)" --tx "(0,0),(1,1)" --w "2,3,4,5,6,7" -f this-code-directory/dpdk/gen.lua '''
+
+
